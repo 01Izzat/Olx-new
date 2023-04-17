@@ -1,20 +1,25 @@
 import React from 'react';
-import './Header.scss';
 import Container from '../../Utils/Container/Container';
-import {FiMessageCircle, FiHeart, FiUser } from 'react-icons/fi';
+import {FiMessageCircle, FiHeart, FiUser} from 'react-icons/fi';
 import {Button} from '../../Utils/Component';
+import './Header.scss';
 
 const Header = () => {
   return (
-    <header>
-      <Container/>
+    <header className='header'>
+      <Container>
         <div className='header__wrapper'>
-          <img src="https://seeklogo.com/images/O/olx-logo-20F1656D13-seeklogo.com.png" alt="logo" />
+          <img className='header__logo' src="https://seeklogo.com/images/O/olx-logo-20F1656D13-seeklogo.com.png" alt="logo" />
 
-          <nav className='header_nav'>
-            <ul className='header_list'>
-              <li>uz</li>|
-              <li>ru</li>
+          <nav className='header__nav'>
+            <ul className='header__list'>
+              <li>
+                uz
+              </li>
+                |
+              <li>
+                ru
+              </li>
             </ul>
 
               <button>
@@ -23,7 +28,7 @@ const Header = () => {
               </button>
 
               <button>
-                <FiHeart />
+                <FiHeart/>
               </button>
 
               <button>
@@ -34,6 +39,7 @@ const Header = () => {
               <Button type={'light'} text='Подать объявление'/>
           </nav>
         </div>
+      </Container>
     </header>
   );
 }

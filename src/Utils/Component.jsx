@@ -17,4 +17,4 @@ const Link = () => {
   );
 }
 
-export {Link, Button};
+export {Button, Link};
