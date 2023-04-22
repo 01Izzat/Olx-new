@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Button } from '../../Utils/Component';
 import {FiMessageCircle, FiHeart, FiUser} from 'react-icons/fi';
+import {Link} from 'react-router-dom';
 
 import './Header.scss';
 
@@ -23,8 +24,10 @@ const Header = () => {
             </ul>
 
               <button>
-                <FiMessageCircle/>
-                Сообщения
+                <Link to="/message">
+                  <FiMessageCircle/>
+                  Сообщения
+                </Link>
               </button>
 
               <button>
