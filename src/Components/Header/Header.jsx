@@ -1,7 +1,7 @@
 import React from 'react';
-import Container from '../../Utils/Container/Container';
+import { Container, Button } from '../../Utils/Component';
 import {FiMessageCircle, FiHeart, FiUser} from 'react-icons/fi';
-import {Button} from '../../Utils/Component';
+
 import './Header.scss';
 
 const Header = () => {

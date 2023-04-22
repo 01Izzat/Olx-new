@@ -1,5 +1,13 @@
 import React from 'react';
 
+const Container = ({children}) => {
+  return (
+    <div className='container'>
+      {children}
+    </div>
+  )
+}
+
 const Button = ({type, text}) => {
   console.log(type);
   return (
@@ -17,4 +25,4 @@ const Link = () => {
   );
 }
 
-export {Button, Link};
+export {Button, Link, Container};
