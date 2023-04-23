@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { instance } from '../../Api/instance';
-import { Container } from '../../Utils/Component';
+import {Container} from '../Utils/Component';
 import CategoryItem from './Categories-item';
 
 const CategoriesList = () => {
@@ -8,14 +8,14 @@ const CategoriesList = () => {
   const [categoryData, setCategoryData] = useState([]);
 
   useEffect(() => {
-    instance.get('/categories')
+    instance.get('/categories?offset=0&limit=8')
     .then(response =>setCategoryData(response.data))
   }, []);
 
   return (
     
         <section>
-          <Container/>
+          <Container>
             <div className='category__item-wrapper'>
               {
                 categoryData.map(item => 
@@ -24,6 +24,7 @@ const CategoriesList = () => {
               }
 
             </div>
+          </Container>
         </section>
     
   );

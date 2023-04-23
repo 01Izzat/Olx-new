@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { instance } from '../../Api/instance'
-import { Container } from '../../Utils/Component';
+import { Container } from '../Utils/Component';
 import ProductCard from './ProductCard';
 import './ProductCard.scss';
 
@@ -19,7 +19,7 @@ const ProductMain = () => {
           <div className='product__main-wrapper'>
             {
               productData.map(item => {
-                return <ProductCard  data={item}/>
+                return <ProductCard key={item.id} data={item}/>
               })
             }
           </div>
