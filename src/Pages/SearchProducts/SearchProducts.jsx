@@ -3,9 +3,9 @@ import { useParams, Link } from 'react-router-dom';
 import {instance} from '../../Api/instance';
 import Header from '../../Components/Header/Header';
 
-import './SingleProducts.scss';
+import './SearchProducts.scss';
 
-const SingleProducts = () => {
+const SearchProducts = () => {
 
   const {searchtitle} = useParams()
   const {resultSearch, setResultSearch} = useState([])
@@ -38,4 +38,4 @@ const SingleProducts = () => {
     </>);
 }
 
-export default SingleProducts;
+export default SearchProducts;
