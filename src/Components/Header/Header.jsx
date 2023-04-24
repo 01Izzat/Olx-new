@@ -1,11 +1,17 @@
 import React from 'react';
-import { Container, Button } from '../Utils/Component';
+import { Container, Button } from '../Utils/Component' ;
 import {FiMessageCircle, FiHeart, FiUser} from 'react-icons/fi';
 import {Link} from 'react-router-dom';
-
+import i18n from '../../Language/i18next';
+import { useTranslation } from 'react-i18next';
 import './Header.scss';
 
+
 const Header = () => {
+  const {t} = useTranslation()
+  const handleChangeLanguage = (e) => {
+     i18n.changeLanguage(e.target.value)
+  }
   return (
     <header className='header'>
       <Container>
@@ -13,31 +19,25 @@ const Header = () => {
           <img className='header__logo' src="https://seeklogo.com/images/O/olx-logo-20F1656D13-seeklogo.com.png" alt="logo" />
 
           <nav className='header__nav'>
-            <ul className='header__list'>
-              <li>
-                uz
-              </li>
-                |
-              <li>
-                ru
-              </li>
-            </ul>
+            <select onChange={handleChangeLanguage} >
+              <option value={"uz"}>{t("select__uz")}</option>
+              <option value={"ru"}>{t("select__ru")}</option>
+              <option value={"en"}>{t("select__en")}</option>
+            </select>
 
+                <Link className='header__nav-link' to='/message'>
+                    <FiMessageCircle/>
+                    {t('header__message')}
+                </Link> 
              
-                <Link to="/message">
-                  <FiMessageCircle/>
-                  Сообщения
-                </Link>
-             
-
               <button>
                 <FiHeart/>
               </button>
 
-              <button>
+              <Link className='header__nav-link' to='/'>
                 <FiUser/>
-                Ваш профиль
-              </button>
+                {t('header__account')}
+              </Link>
 
               <Button type={'light'} text='Подать объявление'/>
           </nav>

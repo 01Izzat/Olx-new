@@ -3,10 +3,12 @@ import { FiSearch } from 'react-icons/fi';
 import { useNavigate, Link } from 'react-router-dom';
 import { instance } from '../../Api/instance';
 import { Container } from '../Utils/Component';
+import useTransition from 'react-i18next';
 import './Search.scss';
 
 const Search = () => {
 
+  const {t} = useTransition()
   const [searchTitle, setSearchTitle] = useState([])
   const [search, setSearch] = useState("")
   const navigate = useNavigate();
@@ -51,7 +53,7 @@ const Search = () => {
                       }
 
                     </div>
-                    <button type='submit'>Search</button>
+                    <button type='submit'>{t('search__btn-text')}</button>
                 </form>
             </div>
         </Container>

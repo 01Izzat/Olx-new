@@ -17,7 +17,6 @@ function App() {
         <Route path='/message' element={<Message/>} />
         <Route path='/singleproduct/:id' element={<SingleProduct/>}/>
         <Route path='/search/:searchtitle' element={<SearchProducts/>} />
-
       </Routes>
     </div>
   );
