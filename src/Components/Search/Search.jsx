@@ -3,12 +3,12 @@ import { FiSearch } from 'react-icons/fi';
 import { useNavigate, Link } from 'react-router-dom';
 import { instance } from '../../Api/instance';
 import { Container } from '../Utils/Component';
-import useTransition from 'react-i18next';
+import {useTranslation } from 'react-i18next';
 import './Search.scss';
 
 const Search = () => {
 
-  const {t} = useTransition()
+  const {t} = useTranslation ()
   const [searchTitle, setSearchTitle] = useState([])
   const [search, setSearch] = useState("")
   const navigate = useNavigate();
