@@ -34,12 +34,12 @@ const Header = () => {
                 <FiHeart/>
               </button>
 
-              <Link className='header__nav-link' to='/'>
+              <Link className='header__nav-link' to='/auth'>
                 <FiUser/>
                 {t('header__account')}
               </Link>
 
-              <Button type={'light'} text='Подать объявление'/>
+              <button className='btn--light'>{t('header__button')}</button>
           </nav>
         </div>
       </Container>
