@@ -1,19 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Container, Button } from '../Utils/Component' ;
 import {FiMessageCircle, FiHeart, FiUser} from 'react-icons/fi';
 import {Link} from 'react-router-dom';
 import i18n from '../../Language/i18next';
 import { useTranslation } from 'react-i18next';
 import './Header.scss';
+import { ContextColor } from '../../Context/ThemeContext';
 
 
 const Header = () => {
+  const {theme, setTheme} = useContext(ContextColor)
   const {t} = useTranslation()
   const handleChangeLanguage = (e) => {
      i18n.changeLanguage(e.target.value)
   }
   return (
-    <header className='header'>
+    <header className={theme ? 'header dark' : 'header light'}>
       <Container>
         <div className='header__wrapper'>
           <img className='header__logo' src="https://seeklogo.com/images/O/olx-logo-20F1656D13-seeklogo.com.png" alt="logo" />
@@ -23,6 +25,11 @@ const Header = () => {
               <option value={"uz"}>{t("select__uz")}</option>
               <option value={"ru"}>{t("select__ru")}</option>
               <option value={"en"}>{t("select__en")}</option>
+            </select>
+
+            <select onChange={e => e.target.value == 'dark' ? setTheme(true) : setTheme(false) }>
+              <option value="dark">Dark</option>
+              <option value="light">Light</option>
             </select>
 
                 <Link className='header__nav-link' to='/message'>

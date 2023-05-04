@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { useNavigate, Link } from 'react-router-dom';
 import { instance } from '../../Api/instance';
 import { Container } from '../Utils/Component';
 import {useTranslation } from 'react-i18next';
 import './Search.scss';
+import { ContextColor } from '../../Context/ThemeContext';
 
 const Search = () => {
 
@@ -12,7 +13,8 @@ const Search = () => {
   const [searchTitle, setSearchTitle] = useState([])
   const [search, setSearch] = useState("")
   const navigate = useNavigate();
-
+  const {theme} = useContext(ContextColor)
+  console.log(theme);
   const handleSearch = (e) => {
    setSearch(e.target.value)
     if(e.target.value.length > 2) {
@@ -30,7 +32,7 @@ const Search = () => {
       return navigate(`/search/${search}`)
   }
   return (
-    <section className='search'> 
+    <section className={theme ? "search dark" : "light search"}> 
         <Container>
             <div className='search-wrapper'>
                 <form className='search-form' onSubmit={handleSubmit}>
