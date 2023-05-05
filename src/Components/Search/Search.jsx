@@ -1,11 +1,12 @@
-import React, {useState, useContext} from 'react';
-import { FiSearch } from 'react-icons/fi';
+import React, {useState, useContext, useEffect} from 'react';
+import { FiSearch, FiMic } from 'react-icons/fi';
 import { useNavigate, Link } from 'react-router-dom';
 import { instance } from '../../Api/instance';
 import { Container } from '../Utils/Component';
 import {useTranslation } from 'react-i18next';
 import './Search.scss';
 import { ContextColor } from '../../Context/ThemeContext';
+import SpeechRecognition, {useSpeechRecognition} from 'react-speech-recognition';
 
 const Search = () => {
 
@@ -14,7 +15,26 @@ const Search = () => {
   const [search, setSearch] = useState("")
   const navigate = useNavigate();
   const {theme} = useContext(ContextColor)
-  console.log(theme);
+  const [modal, setModal] = useState(false)
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+} = useSpeechRecognition();
+
+if (!browserSupportsSpeechRecognition) {
+    return <span>Browser doesn't support speech recognition.</span>;
+}
+
+if(!listening && transcript.length > 1) {
+    return navigate(`/search/${transcript}`)
+}
+
+const handleModal = () => {
+    setModal(!modal)
+}
+
   const handleSearch = (e) => {
    setSearch(e.target.value)
     if(e.target.value.length > 2) {
@@ -55,7 +75,17 @@ const Search = () => {
                       }
 
                     </div>
-                    <button type='submit'>{t('search__btn-text')}</button>
+                    <button className='search__btn' type='submit'>{t("search__btn-text")}</button>
+                    <button className='search__btn' onClick={handleModal} type='button'>
+                      <FiMic/>
+                    </button>
+                    <div className={modal ? "speech__open" : "speech__close"}>
+                            <p>Microphone: {listening ? 'on' : 'off'}</p>
+                            <button type='button' onClick={SpeechRecognition.startListening}>Start</button>
+                            <button type='button' onClick={SpeechRecognition.stopListening}>Stop</button>
+                            <button type='button' onClick={resetTranscript}>Reset</button>
+                            <p>{transcript}</p>
+                    </div>
                 </form>
             </div>
         </Container>
