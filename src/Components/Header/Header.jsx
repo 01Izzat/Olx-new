@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import { Container, Button } from '../Utils/Component' ;
 import {FiMessageCircle, FiHeart, FiUser} from 'react-icons/fi';
 import {Link} from 'react-router-dom';
+import { useSelector } from 'react-redux/es/hooks/useSelector';
 import i18n from '../../Language/i18next';
 import { useTranslation } from 'react-i18next';
 import './Header.scss';
@@ -9,6 +10,7 @@ import { ContextColor } from '../../Context/ThemeContext';
 
 
 const Header = () => {
+  const {email} = useSelector(state => state)
   const {theme, setTheme} = useContext(ContextColor)
   const {t} = useTranslation()
   const handleChangeLanguage = (e) => {
@@ -43,7 +45,7 @@ const Header = () => {
 
               <Link className='header__nav-link' to='/auth'>
                 <FiUser/>
-                {t('header__account')}
+                {email ? email : t('header__account')}
               </Link>
 
               <button className='btn--light'>{t('header__button')}</button>
